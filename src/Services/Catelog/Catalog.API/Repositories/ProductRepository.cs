@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Data;
 using Npgsql;
-
+using Microsoft.Extensions.Configuration;
 
 namespace Catalog.API.Repositories
 {
@@ -15,10 +15,12 @@ namespace Catalog.API.Repositories
         private readonly string _connectionString;
         private readonly string productTableName = "public.\"Product\"";
         private readonly ILogger<ProductRepository> _logger;
-        public ProductRepository(ILogger<ProductRepository> logger)
+        private readonly IConfiguration _configuration;
+        public ProductRepository(ILogger<ProductRepository> logger,IConfiguration configuration)
         {
-            _connectionString = "Host=localhost;Username=postgres;Password=123;Database=Amazon";
             _logger = logger;
+            _configuration = configuration;
+            _connectionString = _configuration.GetValue<string>("DatabaseSettings:ConnectionString");
         }
 
         public async Task<IEnumerable<Product>> GetProducts()
