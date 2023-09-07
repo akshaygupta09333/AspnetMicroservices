@@ -103,6 +103,18 @@
         ],
         "UpstreamPathTemplate": "/Discount",
         "UpstreamHttpMethod": [ "PUT", "POST" ]
+      },
+      {
+        "DownstreamPathTemplate": "/api/v1/Order/{userName}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+          {
+            "Host": "localhost",
+            "Port": "5004"
+          }
+        ],
+        "UpstreamPathTemplate": "/Order/{userName}",
+        "UpstreamHttpMethod": [ "GET" ]
       }
     ],
     "GlobalConfiguration": {
