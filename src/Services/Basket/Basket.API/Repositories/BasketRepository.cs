@@ -19,7 +19,7 @@ namespace Basket.API.Repositories
 
         public async Task<ShoppingCart> GetBasket(string userName)
         {
-            ShoppingCart cart = new ShoppingCart();
+            ShoppingCart cart = new ShoppingCart(userName);
             _memoryCache.TryGetValue(userName, out ShoppingCart shoppingCart);
             if (shoppingCart != null)
             {
