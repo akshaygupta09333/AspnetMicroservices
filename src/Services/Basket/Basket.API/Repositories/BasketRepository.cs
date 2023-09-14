@@ -10,7 +10,6 @@ namespace Basket.API.Repositories
 {
     public class BasketRepository : IBasketRepository
     {
-
         readonly private IMemoryCache _memoryCache;
         public BasketRepository(IMemoryCache memoryCache)
         {
