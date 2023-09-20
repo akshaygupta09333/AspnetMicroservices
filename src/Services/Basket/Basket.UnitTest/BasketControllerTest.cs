@@ -26,6 +26,7 @@ public class BasketControllerTest
     {
         var result = await _controller.GetBasket(UserName);
         Assert.IsType<ActionResult<ShoppingCart>>(result as ActionResult<ShoppingCart>);
+        Assert.IsType<OkObjectResult>(result.Result);
     }
 
     [Fact]
@@ -43,12 +44,14 @@ public class BasketControllerTest
 
         var result = await _controller.UpdateBasket(shoppingCart);
         Assert.IsType<ActionResult<ShoppingCart>>(result as ActionResult<ShoppingCart>);
+        Assert.IsType<OkObjectResult>(result.Result);
     }
 
     [Fact]
     public async Task DeleteBasket_Test()
     {
         var result = await _controller.DeleteBasket(UserName);
+        Assert.IsType<OkObjectResult>(result);
         _repository.Verify();
     }
 }

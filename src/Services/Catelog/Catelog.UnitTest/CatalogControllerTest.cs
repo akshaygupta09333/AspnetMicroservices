@@ -30,21 +30,21 @@ public class CatalogControllerTest
     public async Task GetProducts_Test()
     {
         var result = await _controller.GetProducts();
-        Assert.IsType<ActionResult<IEnumerable<Product>>>(result as ActionResult<IEnumerable<Product>>);
+        Assert.IsType<OkObjectResult>(result.Result);
     }
 
     [Fact]
     public async Task GetProductById_Test()
     {
         var result = await _controller.GetProductById(ProductId);
-        Assert.IsType<ActionResult<Product>>(result as ActionResult<Product>);
+        Assert.IsType<OkObjectResult>(result.Result);
     }
 
     [Fact]
     public async Task GetProductByName_Test()
     {
         var result = await _controller.GetProductByName(Name);
-        Assert.IsType<ActionResult<IEnumerable<Product>>>(result as ActionResult<IEnumerable<Product>>);
+        Assert.IsType<OkObjectResult>(result.Result);
     }
 
     [Fact]
@@ -52,6 +52,7 @@ public class CatalogControllerTest
     {
         var result = await _controller.GetProductByCategory(Category);
         Assert.IsType<ActionResult<IEnumerable<Product>>>(result as ActionResult<IEnumerable<Product>>);
+        Assert.IsType<OkObjectResult>(result.Result);
     }
 
     [Fact]
@@ -68,6 +69,7 @@ public class CatalogControllerTest
             Price = 1000
         };
         var result = await _controller.CreateProduct(product);
+        Assert.IsType<OkObjectResult>(result.Result);
         _repository.Verify();
     }
 
@@ -85,6 +87,7 @@ public class CatalogControllerTest
             Price = 1000
         };
         var result = await _controller.UpdateProduct(product);
+        Assert.IsType<OkObjectResult>(result);
         _repository.Verify();
     }
 
@@ -92,6 +95,7 @@ public class CatalogControllerTest
     public async Task DeleteProductById_Test()
     {
         var result = await _controller.DeleteProductById(ProductId);
+        Assert.IsType<OkObjectResult>(result);
         _repository.Verify();
     }
 }
